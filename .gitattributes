@@ -1,0 +1,1 @@
+hwsd.bil filter=lfs diff=lfs merge=lfs -text
