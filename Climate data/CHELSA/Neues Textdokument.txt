@@ -1,0 +1,12 @@
+Mean daily air temperature: tas_01, …,tas_12
+
+
+
+Data downloadable from here https://envicloud.wsl.ch/#/?prefix=chelsa%2Fchelsa_V2%2FGLOBAL%2F
+
+
+Kenya climate zones according to Koppen climate classification
+
+Tropical savannah
+Dry -- semi-arid Hot
+Temperate
