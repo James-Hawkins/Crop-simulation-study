@@ -8,7 +8,10 @@ library(cowplot)
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 getwd()
 
-run <- function(){
+save.image('All.data.R')
+
+
+run.all <- function(){
   
 sarid <- read_excel("Land_use_parameters.xlsx" , sheet = 'Sarid')
 thsh <- read_excel("Land_use_parameters.xlsx" , sheet = 'THSH')
@@ -79,6 +82,24 @@ lf.d.0$lf.pct <- as.numeric(lf.d.0$lf.pct)
 lf.d.0$lf.act <- as.numeric(lf.d.0$lf.act)
 
 
+# Add additional columns for strings of aez names
+unique.aez <- unique(lf.d.0$aez)
+
+lf.d.0$aez.long <- NA
+dmi.d.0$aez.long <- NA
+
+long.aez.strings <- c("Semi-arid" , "Trop. High. Sub-humid" , "Sub-humid" , "Trop. High. Humid")
+
+lf.d.0[lf.d.0$aez == unique.aez[1] , 'aez.long'] <- long.aez.strings[1]
+lf.d.0[lf.d.0$aez == unique.aez[2] , 'aez.long'] <- long.aez.strings[2]
+lf.d.0[lf.d.0$aez == unique.aez[3] , 'aez.long'] <- long.aez.strings[3]
+lf.d.0[lf.d.0$aez == unique.aez[4] , 'aez.long'] <- long.aez.strings[4]
+
+dmi.d.0[dmi.d.0$aez == unique.aez[1] , 'aez.long'] <- long.aez.strings[1]
+dmi.d.0[dmi.d.0$aez == unique.aez[2] , 'aez.long'] <- long.aez.strings[2]
+dmi.d.0[dmi.d.0$aez == unique.aez[3] , 'aez.long'] <- long.aez.strings[3]
+dmi.d.0[dmi.d.0$aez == unique.aez[4] , 'aez.long'] <- long.aez.strings[4]
+
 # Add additional rows for scenario parameters here
 lf.d.0$scen <- 'Baseline'
 dmi.d.0$scen <- 'Baseline'
@@ -93,15 +114,22 @@ dmi.d.s2 <- dmi.d.0
 dmi.d.s3 <- dmi.d.0
 dmi.d.s4 <- dmi.d.0
 
-lf.d.s1$scen <- 'scen 1'
-lf.d.s2$scen <- 'scen 2'
-lf.d.s3$scen <- 'scen 3'
-lf.d.s4$scen <- 'scen 4'
+scen.names <- c(
+  "Rhodes expansion"
+  , "Maize expansion"
+  , "Rhodes intensification"
+  , "Maize intensification"
+)
 
-dmi.d.s1$scen <- 'scen 1'
-dmi.d.s2$scen <- 'scen 2'
-dmi.d.s3$scen <- 'scen 3'
-dmi.d.s4$scen <- 'scen 4'
+lf.d.s1$scen <- scen.names[1]
+lf.d.s2$scen <- scen.names[2]
+lf.d.s3$scen <- scen.names[3]
+lf.d.s4$scen <- scen.names[4]
+
+dmi.d.s1$scen <- scen.names[1]
+dmi.d.s2$scen <- scen.names[2]
+dmi.d.s3$scen <- scen.names[3]
+dmi.d.s4$scen <- scen.names[4]
 
 lf.d <- rbind( lf.d.0 , lf.d.s1 , lf.d.s2 , lf.d.s3 , lf.d.s4 )
 dmi.d <- rbind( dmi.d.0 , dmi.d.s1 , dmi.d.s2 , dmi.d.s3 , dmi.d.s4 )
@@ -154,9 +182,12 @@ for (s in unique.scens) {
   }
 }
 
-View(dmi.d)
-View(lf.d)
+#View(dmi.d)
+#View(lf.d)
 
+
+plots <- function(){
+  
 feed.levels <- c(
   "Crop residue"
   , "Concentrate/purchased"
@@ -164,6 +195,7 @@ feed.levels <- c(
   ,"Grazing"
  # ,  "Collected fodder" 
 )
+
 
 color.scale.feed <-  c(
   '#e3a86e'
@@ -187,38 +219,64 @@ color.scale.land <-  c(
   #,'pink'
 )
 
+aez.long.levels <- c('Trop. High. Sub-humid'
+                     ,'Trop. High. Humid'
+                     ,'Sub-humid'
+                     ,'Semi-arid'
+                     )
+
 dmi.d$feed <- factor (dmi.d$feed  , levels = feed.levels)
 lf.d$land <- factor (lf.d$land  , levels = land.levels)
 
+dmi.d$aez.long <- factor (dmi.d$aez.long , levels = aez.long.levels)
+lf.d$aez.long <- factor (lf.d$aez.long  , levels = aez.long.levels)
+
+
 # Plot theme parameters
 bar.width <- 0.7
-y.tit.fs <- 8.5
+y.tit.fs <- 6.25
+y.tick.fs <- 4.5
+x.ax.text.fs <- 6.5
 
-p.mg.top <- .15
-p.mg.right <- .3
-p.mg.bottom <- .15
-p.mg.left <- .15
+# figure margins
+p1.mg.top <- 0.15
+p1.mg.right <- 0.4
+p1.mg.bottom <- 0.05
+p1.mg.left <- 0.15
+
+p2.mg.top <- 0.05
+p2.mg.right <- 0.4
+p2.mg.bottom <- 0.05
+p2.mg.left <- 0.15
+
+p3.mg.top <- 0.05
+p3.mg.right <- 0.4
+p3.mg.bottom <- 1.15
+p3.mg.left <- 0.15
+
+# Facets
+strip.fs <- 7
 
 # Legend
+n.cols <- 2
+leg.x.crd <- 0.5
+leg.y.crd <- -1.2
 leg.key.h <- 0.35
 leg.key.w <- 0.35
+leg.txt.fs <- 6.8
 
 
-
-
-
-
-lf.act.0 <- ggplot( lf.d  , aes( fill = land , x = aez ,  y = lf.act ) ) +
+lf.act.0 <<- ggplot( lf.d  , aes( fill = land , x = aez.long,  y = lf.act ) ) +
   geom_bar( stat = 'identity' , width = bar.width ) +
-  ylab('Land footprint (ha/TLU)') +
-  xlab('Agro-ecolocical zone') +
+  ylab('     Land footprint (ha/TLU)') +
   scale_fill_manual(values = color.scale.land) +
   facet_grid( ~ scen) +
   theme(
-    plot.margin = unit(c( p.mg.top ,  p.mg.right,  p.mg.bottom, p.mg.left), "cm"),
+    plot.margin = unit(c( p1.mg.top ,  p1.mg.right,  p1.mg.bottom, p1.mg.left), "cm"),
     axis.text.x = element_blank()
     , axis.title.x = element_blank()
     , axis.title.y = element_text(size = y.tit.fs ) 
+    , axis.text.y = element_text(size = y.tick.fs)
     , axis.ticks.x = element_blank()
     # Panel
     ,panel.grid.major = element_blank()
@@ -228,66 +286,77 @@ lf.act.0 <- ggplot( lf.d  , aes( fill = land , x = aez ,  y = lf.act ) ) +
                                  fill=NA, size=1)
     # Strip
     ,strip.background = element_rect(color='black', fill='white', size=1.0, linetype="solid"),
+    , strip.text.x =   element_text( size = strip.fs )
     # Legend
     ,  legend.position="none"
+ 
     ) 
 
 
-lf.pct.p.0 <- ggplot( lf.d  , aes(x = aez , y = lf.pct , fill = land) ) +
+lf.pct.p.0 <<- ggplot( lf.d  , aes(x = aez.long , y = lf.pct , fill = land) ) +
   geom_bar(position="fill" , stat = "identity" , width = bar.width ) +
-  ylab('Land footprint (%)') +
+  ylab('Land footprint (%)  ') +
   xlab('Agro-ecolocical zone') +
   scale_fill_manual(values = color.scale.land) +
   facet_grid( ~ scen) +
   theme(
-    plot.margin = unit(c( p.mg.top ,  p.mg.right,  p.mg.bottom, p.mg.left), "cm"),
+    plot.margin = unit(c( p2.mg.top ,  p2.mg.right,  p2.mg.bottom, p2.mg.left), "cm"),
     , axis.title.x = element_blank()
     , axis.title.y = element_text(size = y.tit.fs ) 
     , axis.ticks.x = element_blank()
+    , axis.text.y = element_text(size = y.tick.fs)
     , axis.text.x = element_blank()
     # Strip
     ,strip.background.y =  element_blank(),
-    ,strip.text.y =   element_blank()
+    ,strip.text.x =   element_blank()
     # Panel
     ,panel.grid.major = element_blank()
     ,panel.grid.minor = element_blank()
     ,panel.background = element_blank()
     ,panel.border = element_rect(colour = "black",
                                  fill=NA, size=1)
-    ,  legend.position="none" )
+    ,  legend.position="none" 
+    )
     
-dmi.p.0 <- ggplot( dmi.d  , aes(x = aez , y = dmi.pct , fill = feed) ) +
+dmi.p.0 <<- ggplot( dmi.d  , aes(x = aez.long , y = dmi.pct , fill = feed) ) +
   geom_bar(position="fill", stat="identity"  , width = bar.width) +
-  ylab('Dry matter intake (%)') +
+  ylab('Dry matter intake (%)   ') +
   xlab('Agro-ecolocical zone') +
   scale_fill_manual(values = color.scale.feed) +
   facet_grid( ~ scen) +
+  guides(fill=guide_legend(ncol=n.cols)) +
   theme(
-    plot.margin = unit(c( p.mg.top ,  p.mg.right,  p.mg.bottom, p.mg.left), "cm"),
-    , axis.title.x = element_text(size = 9.5 ) 
+    plot.margin = unit(c( p3.mg.top ,  p3.mg.right,  p3.mg.bottom, p3.mg.left), "cm"),
+    , axis.title.x = element_blank()
     , axis.title.y = element_text(size = y.tit.fs) 
     , axis.ticks.x = element_blank()
-    , axis.text.x = element_text(angle = 90, face = 'italic' , vjust = 0.5, hjust=1, size = 9.5 )
+    , axis.text.y = element_text(size = y.tick.fs)
+    , axis.text.x = element_text(angle = 90, face = 'italic' , vjust = 0.5, hjust=1, size = x.ax.text.fs )
     #Strip
-    ,strip.background.y =  element_blank(),
-    ,strip.text.y =   element_blank()
+    , strip.text.x =   element_blank()
+    , strip.background.y =  element_blank(),
+    , strip.text.y =   element_blank()
     # Panel
-    ,panel.grid.major = element_blank()
-    ,panel.grid.minor = element_blank()
-    ,panel.background = element_blank()
-    ,panel.border = element_rect(colour = "black",
+    , panel.grid.major = element_blank()
+    , panel.grid.minor = element_blank()
+    , panel.background = element_blank()
+    , panel.border = element_rect(colour = "black",
                                  fill=NA, size=1)
     # Legend
-    ,  legend.position="bottom" 
+    #,  legend.position="bottom" 
+    , legend.position = c(leg.x.crd , leg.y.crd)
+    #, legend.position.inside = c(.25,-.5)
+    ,  legend.title=element_blank()
     ,  legend.key.height = unit(leg.key.h , 'cm')
-    , legend.key.width = unit(leg.key.w , 'cm'))
+    ,  legend.key.width = unit(leg.key.w , 'cm')
+    ,  legend.text = element_text(size = leg.txt.fs ) 
+    )
 
-label.fs <- 10
+label.fs <- 8
 
-lf.act  <<- annotate_figure( lf.act.0 ,   fig.lab = "a", fig.lab.pos ="top.right", fig.lab.size = label.fs)
-
-lf.pct.p  <<- annotate_figure(lf.pct.p.0 ,   fig.lab = "b", fig.lab.pos ="top.right", fig.lab.size = label.fs)
-dmi.p  <<- annotate_figure( dmi.p.0 ,   fig.lab = "c", fig.lab.pos ="top.right", fig.lab.size = label.fs)
+lf.act  <<- annotate_figure( lf.act.0 ,   fig.lab = " a  ", fig.lab.pos ="top.right", fig.lab.size = label.fs)
+lf.pct.p  <<- annotate_figure(lf.pct.p.0 ,   fig.lab = " b  ", fig.lab.pos ="top.right", fig.lab.size = label.fs)
+dmi.p  <<- annotate_figure( dmi.p.0 ,   fig.lab = " c  ", fig.lab.pos ="top.right", fig.lab.size = label.fs)
 
 
 fig.land.nexus   <<- plot_grid( 
@@ -297,12 +366,17 @@ fig.land.nexus   <<- plot_grid(
                            align = "h", 
                            nrow = 3, 
                            ncol = 1 , 
-                           rel_heights = c(27.5/100, 27.5/100 , 45/100))
+                           rel_heights = c(24/100, 23/100 , 53/100))
 
 fig.land.nexus
 
 
-fig.land.nexus.pt.x.dim <- 500
-fig.land.nexus.pt.y.dim <- 580
+fig.land.nexus.pt.x.dim <- 640
+fig.land.nexus.pt.y.dim <- 540
 ggsave("fig.land.nexus.jpeg",     fig.land.nexus   ,  width =   fig.land.nexus.pt.x.dim, height =   fig.land.nexus.pt.y.dim , units="px", scale=2.5  )
 
+}
+plots()
+
+}
+run.all()
