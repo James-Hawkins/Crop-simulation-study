@@ -8,7 +8,7 @@ library(cowplot)
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 getwd()
 
-save.image('All.data.R')
+save.image('All.data.RData')
 
 
 run.all <- function(){
@@ -81,6 +81,15 @@ names(lf.d.0)[3] <- 'lf.act'
 lf.d.0$lf.pct <- as.numeric(lf.d.0$lf.pct)
 lf.d.0$lf.act <- as.numeric(lf.d.0$lf.act)
 
+# Rename names for feed types to correspond with land types
+uniq.fds <- unique(dmi.d.0$feed)
+
+new.feed.nms <- c("Native grassland", "Rhodes grass" , "Maize residue" , "Maize concentrate")
+
+dmi.d.0[dmi.d.0$feed == uniq.fds[1] , 'feed'] <- new.feed.nms[1]
+dmi.d.0[dmi.d.0$feed == uniq.fds[2] , 'feed'] <- new.feed.nms[2]
+dmi.d.0[dmi.d.0$feed == uniq.fds[3] , 'feed'] <- new.feed.nms[3]
+dmi.d.0[dmi.d.0$feed == uniq.fds[4] , 'feed'] <- new.feed.nms[4]
 
 # Add additional columns for strings of aez names
 unique.aez <- unique(lf.d.0$aez)
@@ -108,31 +117,46 @@ lf.d.s1 <- lf.d.0
 lf.d.s2 <- lf.d.0
 lf.d.s3 <- lf.d.0
 lf.d.s4 <- lf.d.0
+lf.d.s5 <- lf.d.0
 
 dmi.d.s1 <- dmi.d.0
 dmi.d.s2 <- dmi.d.0
 dmi.d.s3 <- dmi.d.0
 dmi.d.s4 <- dmi.d.0
+dmi.d.s5 <- dmi.d.0
 
-scen.names <- c(
-  "Rhodes expansion"
-  , "Maize expansion"
-  , "Rhodes intensification"
-  , "Maize intensification"
+scen.names <<- c(
+  #"Baseline"
+   "(S1) Maize\nexpansion"
+  , "(S2) Maize\nintensification"
+  , "(S3) Rhodes\nexpansion"
+  , "(S4) Rhodes\nintensification"
+  , "(S5): S2 + S3\n+ S4"
+)
+
+scen.names.plus.bl <<- c(
+  "Baseline"
+  , "(S1) Maize\nexpansion"
+  , "(S2) Maize\nintensification"
+  , "(S3) Rhodes\nexpansion"
+  , "(S4) Rhodes\nintensification"
+  , "(S5): S2 + S3\n+ S4"
 )
 
 lf.d.s1$scen <- scen.names[1]
 lf.d.s2$scen <- scen.names[2]
 lf.d.s3$scen <- scen.names[3]
 lf.d.s4$scen <- scen.names[4]
+lf.d.s5$scen <- scen.names[5]
 
 dmi.d.s1$scen <- scen.names[1]
 dmi.d.s2$scen <- scen.names[2]
 dmi.d.s3$scen <- scen.names[3]
 dmi.d.s4$scen <- scen.names[4]
+dmi.d.s5$scen <- scen.names[5]
 
-lf.d <- rbind( lf.d.0 , lf.d.s1 , lf.d.s2 , lf.d.s3 , lf.d.s4 )
-dmi.d <- rbind( dmi.d.0 , dmi.d.s1 , dmi.d.s2 , dmi.d.s3 , dmi.d.s4 )
+lf.d <- rbind( lf.d.0 , lf.d.s1 , lf.d.s2 , lf.d.s3 , lf.d.s4 , lf.d.s5 )
+dmi.d <- rbind( dmi.d.0 , dmi.d.s1 , dmi.d.s2 , dmi.d.s3 , dmi.d.s4 , dmi.d.s5 )
 
 #View(lf.d)
 #View(dmi.d)
@@ -189,10 +213,10 @@ for (s in unique.scens) {
 plots <- function(){
   
 feed.levels <- c(
-  "Crop residue"
-  , "Concentrate/purchased"
-  ,"Cultivated fodder" 
-  ,"Grazing"
+  "Maize residue"
+  , "Maize concentrate"
+  ,"Rhodes grass" 
+  ,"Native grassland"
  # ,  "Collected fodder" 
 )
 
@@ -230,6 +254,9 @@ lf.d$land <- factor (lf.d$land  , levels = land.levels)
 
 dmi.d$aez.long <- factor (dmi.d$aez.long , levels = aez.long.levels)
 lf.d$aez.long <- factor (lf.d$aez.long  , levels = aez.long.levels)
+
+dmi.d$scen <- factor (dmi.d$scen , levels = scen.names.plus.bl )
+lf.d$scen  <- factor (lf.d$scen  , levels = scen.names.plus.bl )
 
 
 # Plot theme parameters
