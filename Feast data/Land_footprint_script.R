@@ -113,6 +113,10 @@ dmi.d.0[dmi.d.0$aez == unique.aez[4] , 'aez.long'] <- long.aez.strings[4]
 lf.d.0$scen <- 'Baseline'
 dmi.d.0$scen <- 'Baseline'
 
+lf.d.0$scen.lab <- 'Baseline'
+dmi.d.0$scen.lab <- 'Baseline'
+
+
 lf.d.s1 <- lf.d.0
 lf.d.s2 <- lf.d.0
 lf.d.s3 <- lf.d.0
@@ -126,22 +130,42 @@ dmi.d.s4 <- dmi.d.0
 dmi.d.s5 <- dmi.d.0
 
 scen.names <<- c(
-  #"Baseline"
-   "(S1) Maize\nexpansion"
-  , "(S2) Maize\nintensification"
-  , "(S3) Rhodes\nexpansion"
-  , "(S4) Rhodes\nintensification"
-  , "(S5): S2 + S3\n+ S4"
+  "Maize expansion"
+  , "Maize intensification"
+  , "Rhodes expansion"
+  , "Rhodes intensification"
+  , "Maize intensification + Rhodes expansion-intensification"
 )
 
-scen.names.plus.bl <<- c(
-  "Baseline"
-  , "(S1) Maize\nexpansion"
-  , "(S2) Maize\nintensification"
-  , "(S3) Rhodes\nexpansion"
-  , "(S4) Rhodes\nintensification"
-  , "(S5): S2 + S3\n+ S4"
+scen.names.lab <<- c(
+  #"Baseline"
+   "S1: Maize\nexpansion"
+  , "S2: Maize\nintensification"
+  , "S3: Rhodes\nexpansion"
+  , "S4: Rhodes\nintensification"
+  , "S5: S2 + S3\n+ S4"
 )
+
+scen.names.plus.bl.lab <<- c(
+  "Baseline"
+  , "S1: Maize\nexpansion"
+  , "S2: Maize\nintensification"
+  , "S3: Rhodes\nexpansion"
+  , "S4: Rhodes\nintensification"
+  , "S5: S2 + S3\n+ S4"
+)
+
+lf.d.s1$scen.lab <- scen.names.lab [1]
+lf.d.s2$scen.lab <- scen.names.lab [2]
+lf.d.s3$scen.lab <- scen.names.lab [3]
+lf.d.s4$scen.lab <- scen.names.lab [4]
+lf.d.s5$scen.lab <- scen.names.lab [5]
+
+dmi.d.s1$scen.lab <- scen.names.lab [1]
+dmi.d.s2$scen.lab <- scen.names.lab [2]
+dmi.d.s3$scen.lab <- scen.names.lab [3]
+dmi.d.s4$scen.lab <- scen.names.lab [4]
+dmi.d.s5$scen.lab <- scen.names.lab [5]
 
 lf.d.s1$scen <- scen.names[1]
 lf.d.s2$scen <- scen.names[2]
@@ -154,6 +178,8 @@ dmi.d.s2$scen <- scen.names[2]
 dmi.d.s3$scen <- scen.names[3]
 dmi.d.s4$scen <- scen.names[4]
 dmi.d.s5$scen <- scen.names[5]
+
+
 
 lf.d <- rbind( lf.d.0 , lf.d.s1 , lf.d.s2 , lf.d.s3 , lf.d.s4 , lf.d.s5 )
 dmi.d <- rbind( dmi.d.0 , dmi.d.s1 , dmi.d.s2 , dmi.d.s3 , dmi.d.s4 , dmi.d.s5 )
@@ -188,7 +214,7 @@ dmi.d[dmi.d$feed == f & dmi.d$scen == s & dmi.d$aez == aez, 'dmi.pct'] <- (
 }
 }
 
-for (s in unique.scens) {
+for (s in unique(scen.prms.dm$scen)) {
   for (f in unique.lands) {
     for (aez in unique.aezs) {
       
@@ -206,8 +232,10 @@ for (s in unique.scens) {
   }
 }
 
-#View(dmi.d)
-#View(lf.d)
+# View(dmi.d)
+# View(lf.d)
+dmi.d <<- dmi.d
+lf.d <<-  lf.d
 
 
 plots <- function(){
@@ -255,8 +283,8 @@ lf.d$land <- factor (lf.d$land  , levels = land.levels)
 dmi.d$aez.long <- factor (dmi.d$aez.long , levels = aez.long.levels)
 lf.d$aez.long <- factor (lf.d$aez.long  , levels = aez.long.levels)
 
-dmi.d$scen <- factor (dmi.d$scen , levels = scen.names.plus.bl )
-lf.d$scen  <- factor (lf.d$scen  , levels = scen.names.plus.bl )
+dmi.d$scen.lab <- factor (dmi.d$scen.lab , levels = scen.names.plus.bl )
+lf.d$scen.lab  <- factor (lf.d$scen.lab  , levels = scen.names.plus.bl )
 
 
 # Plot theme parameters
@@ -267,27 +295,27 @@ x.ax.text.fs <- 6.5
 
 # figure margins
 p1.mg.top <- 0.15
-p1.mg.right <- 0.4
+p1.mg.right <- 0.15
 p1.mg.bottom <- 0.05
 p1.mg.left <- 0.15
 
 p2.mg.top <- 0.05
-p2.mg.right <- 0.4
+p2.mg.right <- p1.mg.right
 p2.mg.bottom <- 0.05
 p2.mg.left <- 0.15
 
 p3.mg.top <- 0.05
-p3.mg.right <- 0.4
-p3.mg.bottom <- 1.15
+p3.mg.right <- p1.mg.right
+p3.mg.bottom <- 0.8
 p3.mg.left <- 0.15
 
 # Facets
 strip.fs <- 7
 
 # Legend
-n.cols <- 2
+n.cols <- 4
 leg.x.crd <- 0.5
-leg.y.crd <- -1.2
+leg.y.crd <- -1.18
 leg.key.h <- 0.35
 leg.key.w <- 0.35
 leg.txt.fs <- 6.8
@@ -295,9 +323,9 @@ leg.txt.fs <- 6.8
 
 lf.act.0 <<- ggplot( lf.d  , aes( fill = land , x = aez.long,  y = lf.act ) ) +
   geom_bar( stat = 'identity' , width = bar.width ) +
-  ylab('     Land footprint (ha/TLU)') +
+  ylab('  Land footprint (ha/TLU)') +
   scale_fill_manual(values = color.scale.land) +
-  facet_grid( ~ scen) +
+  facet_grid( ~ scen.lab) +
   theme(
     plot.margin = unit(c( p1.mg.top ,  p1.mg.right,  p1.mg.bottom, p1.mg.left), "cm"),
     axis.text.x = element_blank()
@@ -320,12 +348,12 @@ lf.act.0 <<- ggplot( lf.d  , aes( fill = land , x = aez.long,  y = lf.act ) ) +
     ) 
 
 
-lf.pct.p.0 <<- ggplot( lf.d  , aes(x = aez.long , y = lf.pct , fill = land) ) +
+lf.pct.p.0 <<- ggplot( lf.d  , aes(x = aez.long , y = lf.act, fill = land) ) +
   geom_bar(position="fill" , stat = "identity" , width = bar.width ) +
   ylab('Land footprint (%)  ') +
   xlab('Agro-ecolocical zone') +
   scale_fill_manual(values = color.scale.land) +
-  facet_grid( ~ scen) +
+  facet_grid( ~ scen.lab) +
   theme(
     plot.margin = unit(c( p2.mg.top ,  p2.mg.right,  p2.mg.bottom, p2.mg.left), "cm"),
     , axis.title.x = element_blank()
@@ -347,10 +375,10 @@ lf.pct.p.0 <<- ggplot( lf.d  , aes(x = aez.long , y = lf.pct , fill = land) ) +
     
 dmi.p.0 <<- ggplot( dmi.d  , aes(x = aez.long , y = dmi.pct , fill = feed) ) +
   geom_bar(position="fill", stat="identity"  , width = bar.width) +
-  ylab('Dry matter intake (%)   ') +
+  ylab('Dry matter intake (%)     ') +
   xlab('Agro-ecolocical zone') +
   scale_fill_manual(values = color.scale.feed) +
-  facet_grid( ~ scen) +
+  facet_grid( ~ scen.lab) +
   guides(fill=guide_legend(ncol=n.cols)) +
   theme(
     plot.margin = unit(c( p3.mg.top ,  p3.mg.right,  p3.mg.bottom, p3.mg.left), "cm"),
@@ -381,9 +409,9 @@ dmi.p.0 <<- ggplot( dmi.d  , aes(x = aez.long , y = dmi.pct , fill = feed) ) +
 
 label.fs <- 8
 
-lf.act  <<- annotate_figure( lf.act.0 ,   fig.lab = " a  ", fig.lab.pos ="top.right", fig.lab.size = label.fs)
-lf.pct.p  <<- annotate_figure(lf.pct.p.0 ,   fig.lab = " b  ", fig.lab.pos ="top.right", fig.lab.size = label.fs)
-dmi.p  <<- annotate_figure( dmi.p.0 ,   fig.lab = " c  ", fig.lab.pos ="top.right", fig.lab.size = label.fs)
+lf.act  <<- annotate_figure( lf.act.0 ,   fig.lab = " a  ", fig.lab.pos ="top.left", fig.lab.size = label.fs)
+lf.pct.p  <<- annotate_figure(lf.pct.p.0 ,   fig.lab = " b  ", fig.lab.pos ="top.left", fig.lab.size = label.fs)
+dmi.p  <<- annotate_figure( dmi.p.0 ,   fig.lab = " c  ", fig.lab.pos ="top.left", fig.lab.size = label.fs)
 
 
 fig.land.nexus   <<- plot_grid( 
