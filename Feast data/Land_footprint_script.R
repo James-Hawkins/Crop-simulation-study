@@ -218,10 +218,10 @@ for (s in unique(scen.prms.dm$scen)) {
   for (f in unique.lands) {
     for (aez in unique.aezs) {
       
-      lf.d[lf.d$land == f & lf.d$scen == s & lf.d$aez == aez, 'lf.pct'] <- (
-       lf.d[lf.d$land == f & lf.d$scen == 'Baseline' & lf.d$aez == aez, 'lf.pct'] 
-        * scen.prms.lf[scen.prms.lf$land == f & scen.prms.lf$scen == s & scen.prms.lf$aez == aez , 'delta.lf.pct']
-      )
+    #  lf.d[lf.d$land == f & lf.d$scen == s & lf.d$aez == aez, 'lf.pct'] <- (
+      # lf.d[lf.d$land == f & lf.d$scen == 'Baseline' & lf.d$aez == aez, 'lf.pct'] 
+      # * scen.prms.lf[scen.prms.lf$land == f & scen.prms.lf$scen == s & scen.prms.lf$aez == aez , 'delta.lf.pct']
+      # )
       
       lf.d[lf.d$land == f & lf.d$scen == s & lf.d$aez == aez, 'lf.act'] <- (
         lf.d[lf.d$land == f & lf.d$scen == 'Baseline' & lf.d$aez == aez, 'lf.act'] 
