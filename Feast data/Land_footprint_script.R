@@ -84,7 +84,7 @@ lf.d.0$lf.act <- as.numeric(lf.d.0$lf.act)
 # Rename names for feed types to correspond with land types
 uniq.fds <- unique(dmi.d.0$feed)
 
-new.feed.nms <- c("Native grassland", "Rhodes grass" , "Maize residue" , "Maize concentrate")
+new.feed.nms <- c("Native grassland", "Maize residue" ,"Rhodes grass"   , "Maize concentrate")
 
 dmi.d.0[dmi.d.0$feed == uniq.fds[1] , 'feed'] <- new.feed.nms[1]
 dmi.d.0[dmi.d.0$feed == uniq.fds[2] , 'feed'] <- new.feed.nms[2]
@@ -190,8 +190,8 @@ dmi.d <- rbind( dmi.d.0 , dmi.d.s1 , dmi.d.s2 , dmi.d.s3 , dmi.d.s4 , dmi.d.s5 )
 colnames(dmi.d)
 
 # Define scenarios as % change from baseline parameters (feed, land footprint)
-scen.prms.dm <- read_excel("Scenario_params.xlsx" , sheet = 'Feeding')
-scen.prms.lf <- read_excel("Scenario_params.xlsx" , sheet = 'Land.footprint')
+scen.prms.dm <- read_excel("Scenario_params_new.xlsx" , sheet = 'Feeding')
+scen.prms.lf <- read_excel("Scenario_params_new.xlsx" , sheet = 'Land.footprint')
 
 scen.prms.dm <- as.data.frame(scen.prms.dm)
 scen.prms.lf <- as.data.frame(scen.prms.lf)
@@ -201,13 +201,17 @@ unique.feeds <- unique(scen.prms.dm$feed)
 unique.lands <- unique(scen.prms.lf$land)
 unique.aezs <- unique(scen.prms.lf$aez)
 
+View(dmi.d)
+View(scen.prms.lf)
+
 for (s in unique.scens) {
 for (f in unique.feeds) {
 for (aez in unique.aezs) {
   
 dmi.d[dmi.d$feed == f & dmi.d$scen == s & dmi.d$aez == aez, 'dmi.pct'] <- (
-  dmi.d[dmi.d$feed == f & dmi.d$scen == 'Baseline' & dmi.d$aez == aez, 'dmi.pct'] 
-     * scen.prms.dm[scen.prms.dm$feed == f & scen.prms.dm$scen == s & scen.prms.dm$aez == aez , 'delta.feed.dmi']
+  dmi.d[dmi.d$feed == f & dmi.d$scen == 'Baseline' & dmi.d$aez == aez, 'dmi.pct'] +
+   # dmi.d[dmi.d$feed == f & dmi.d$scen == 'Baseline' & dmi.d$aez == aez, 'dmi.pct']
+    100 * scen.prms.dm[scen.prms.dm$feed == f & scen.prms.dm$scen == s & scen.prms.dm$aez == aez , 'delta.feed.dmi']
     )
 
 }
@@ -218,17 +222,15 @@ for (s in unique(scen.prms.dm$scen)) {
   for (f in unique.lands) {
     for (aez in unique.aezs) {
       
-    #  lf.d[lf.d$land == f & lf.d$scen == s & lf.d$aez == aez, 'lf.pct'] <- (
-      # lf.d[lf.d$land == f & lf.d$scen == 'Baseline' & lf.d$aez == aez, 'lf.pct'] 
-      # * scen.prms.lf[scen.prms.lf$land == f & scen.prms.lf$scen == s & scen.prms.lf$aez == aez , 'delta.lf.pct']
-      # )
       
-      lf.d[lf.d$land == f & lf.d$scen == s & lf.d$aez == aez, 'lf.act'] <- (
-        lf.d[lf.d$land == f & lf.d$scen == 'Baseline' & lf.d$aez == aez, 'lf.act'] 
-        * scen.prms.lf[scen.prms.lf$land == f & scen.prms.lf$scen == s & scen.prms.lf$aez == aez , 'delta.lf.act']
+      lf.d[lf.d$land == f & lf.d$scen == s & lf.d$aez == aez, 'lf.pct'] <- (
+        lf.d[lf.d$land == f & lf.d$scen == 'Baseline' & lf.d$aez == aez, 'lf.pct'] +
+          #  lf.d[lf.d$land == f & lf.d$scen == 'Baseline' & lf.d$aez == aez, 'lf.act'] 
+       100 * scen.prms.lf[scen.prms.lf$land == f & scen.prms.lf$scen == s & scen.prms.lf$aez == aez , 'delta.lf.pct']
       )
       
-    }
+ 
+  }
   }
 }
 
@@ -283,8 +285,8 @@ lf.d$land <- factor (lf.d$land  , levels = land.levels)
 dmi.d$aez.long <- factor (dmi.d$aez.long , levels = aez.long.levels)
 lf.d$aez.long <- factor (lf.d$aez.long  , levels = aez.long.levels)
 
-dmi.d$scen.lab <- factor (dmi.d$scen.lab , levels = scen.names.plus.bl )
-lf.d$scen.lab  <- factor (lf.d$scen.lab  , levels = scen.names.plus.bl )
+dmi.d$scen.lab <- factor (dmi.d$scen.lab , levels = scen.names.plus.bl.lab )
+lf.d$scen.lab  <- factor (lf.d$scen.lab  , levels = scen.names.plus.bl.lab )
 
 
 # Plot theme parameters
@@ -435,3 +437,8 @@ plots()
 
 }
 run.all()
+
+write.csv( dmi.d  , 'dmi.data.csv')
+
+
+View(dmi.d)
