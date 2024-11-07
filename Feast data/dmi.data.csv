@@ -1,0 +1,177 @@
+,feed,dmi.pct,aez,aez.long,scen,scen.lab
+1,Native grassland,94,SA,Semi-arid,Baseline,Baseline
+3,Maize residue,0,SA,Semi-arid,Baseline,Baseline
+4,Rhodes grass,0,SA,Semi-arid,Baseline,Baseline
+5,Maize concentrate,6,SA,Semi-arid,Baseline,Baseline
+6,Native grassland,58,THSH,Trop. High. Sub-humid,Baseline,Baseline
+8,Maize residue,6,THSH,Trop. High. Sub-humid,Baseline,Baseline
+9,Rhodes grass,35,THSH,Trop. High. Sub-humid,Baseline,Baseline
+10,Maize concentrate,1,THSH,Trop. High. Sub-humid,Baseline,Baseline
+11,Native grassland,56,SH,Sub-humid,Baseline,Baseline
+13,Maize residue,0.666666667,SH,Sub-humid,Baseline,Baseline
+14,Rhodes grass,33.66666667,SH,Sub-humid,Baseline,Baseline
+15,Maize concentrate,9.666666667,SH,Sub-humid,Baseline,Baseline
+16,Native grassland,48,THH,Trop. High. Humid,Baseline,Baseline
+18,Maize residue,24,THH,Trop. High. Humid,Baseline,Baseline
+19,Rhodes grass,27,THH,Trop. High. Humid,Baseline,Baseline
+20,Maize concentrate,1,THH,Trop. High. Humid,Baseline,Baseline
+12,Native grassland,79,SA,Semi-arid,Maize expansion,"S1: Maize
+expansion"
+31,Maize residue,7.5,SA,Semi-arid,Maize expansion,"S1: Maize
+expansion"
+41,Rhodes grass,0,SA,Semi-arid,Maize expansion,"S1: Maize
+expansion"
+51,Maize concentrate,13.5,SA,Semi-arid,Maize expansion,"S1: Maize
+expansion"
+61,Native grassland,43,THSH,Trop. High. Sub-humid,Maize expansion,"S1: Maize
+expansion"
+81,Maize residue,13.5,THSH,Trop. High. Sub-humid,Maize expansion,"S1: Maize
+expansion"
+91,Rhodes grass,35,THSH,Trop. High. Sub-humid,Maize expansion,"S1: Maize
+expansion"
+101,Maize concentrate,8.5,THSH,Trop. High. Sub-humid,Maize expansion,"S1: Maize
+expansion"
+111,Native grassland,41,SH,Sub-humid,Maize expansion,"S1: Maize
+expansion"
+131,Maize residue,8.166666667,SH,Sub-humid,Maize expansion,"S1: Maize
+expansion"
+141,Rhodes grass,33.66666667,SH,Sub-humid,Maize expansion,"S1: Maize
+expansion"
+151,Maize concentrate,17.16666667,SH,Sub-humid,Maize expansion,"S1: Maize
+expansion"
+161,Native grassland,33,THH,Trop. High. Humid,Maize expansion,"S1: Maize
+expansion"
+181,Maize residue,31.5,THH,Trop. High. Humid,Maize expansion,"S1: Maize
+expansion"
+191,Rhodes grass,27,THH,Trop. High. Humid,Maize expansion,"S1: Maize
+expansion"
+201,Maize concentrate,8.5,THH,Trop. High. Humid,Maize expansion,"S1: Maize
+expansion"
+17,Native grassland,79,SA,Semi-arid,Maize intensification,"S2: Maize
+intensification"
+32,Maize residue,7.5,SA,Semi-arid,Maize intensification,"S2: Maize
+intensification"
+42,Rhodes grass,0,SA,Semi-arid,Maize intensification,"S2: Maize
+intensification"
+52,Maize concentrate,13.5,SA,Semi-arid,Maize intensification,"S2: Maize
+intensification"
+62,Native grassland,43,THSH,Trop. High. Sub-humid,Maize intensification,"S2: Maize
+intensification"
+82,Maize residue,13.5,THSH,Trop. High. Sub-humid,Maize intensification,"S2: Maize
+intensification"
+92,Rhodes grass,35,THSH,Trop. High. Sub-humid,Maize intensification,"S2: Maize
+intensification"
+102,Maize concentrate,8.5,THSH,Trop. High. Sub-humid,Maize intensification,"S2: Maize
+intensification"
+112,Native grassland,41,SH,Sub-humid,Maize intensification,"S2: Maize
+intensification"
+132,Maize residue,8.166666667,SH,Sub-humid,Maize intensification,"S2: Maize
+intensification"
+142,Rhodes grass,33.66666667,SH,Sub-humid,Maize intensification,"S2: Maize
+intensification"
+152,Maize concentrate,17.16666667,SH,Sub-humid,Maize intensification,"S2: Maize
+intensification"
+162,Native grassland,33,THH,Trop. High. Humid,Maize intensification,"S2: Maize
+intensification"
+182,Maize residue,31.5,THH,Trop. High. Humid,Maize intensification,"S2: Maize
+intensification"
+192,Rhodes grass,27,THH,Trop. High. Humid,Maize intensification,"S2: Maize
+intensification"
+202,Maize concentrate,8.5,THH,Trop. High. Humid,Maize intensification,"S2: Maize
+intensification"
+110,Native grassland,79,SA,Semi-arid,Rhodes expansion,"S3: Rhodes
+expansion"
+33,Maize residue,0,SA,Semi-arid,Rhodes expansion,"S3: Rhodes
+expansion"
+43,Rhodes grass,15,SA,Semi-arid,Rhodes expansion,"S3: Rhodes
+expansion"
+53,Maize concentrate,6,SA,Semi-arid,Rhodes expansion,"S3: Rhodes
+expansion"
+63,Native grassland,43,THSH,Trop. High. Sub-humid,Rhodes expansion,"S3: Rhodes
+expansion"
+83,Maize residue,6,THSH,Trop. High. Sub-humid,Rhodes expansion,"S3: Rhodes
+expansion"
+93,Rhodes grass,50,THSH,Trop. High. Sub-humid,Rhodes expansion,"S3: Rhodes
+expansion"
+103,Maize concentrate,1,THSH,Trop. High. Sub-humid,Rhodes expansion,"S3: Rhodes
+expansion"
+113,Native grassland,41,SH,Sub-humid,Rhodes expansion,"S3: Rhodes
+expansion"
+133,Maize residue,0.666666667,SH,Sub-humid,Rhodes expansion,"S3: Rhodes
+expansion"
+143,Rhodes grass,48.66666667,SH,Sub-humid,Rhodes expansion,"S3: Rhodes
+expansion"
+153,Maize concentrate,9.666666667,SH,Sub-humid,Rhodes expansion,"S3: Rhodes
+expansion"
+163,Native grassland,33,THH,Trop. High. Humid,Rhodes expansion,"S3: Rhodes
+expansion"
+183,Maize residue,24,THH,Trop. High. Humid,Rhodes expansion,"S3: Rhodes
+expansion"
+193,Rhodes grass,42,THH,Trop. High. Humid,Rhodes expansion,"S3: Rhodes
+expansion"
+203,Maize concentrate,1,THH,Trop. High. Humid,Rhodes expansion,"S3: Rhodes
+expansion"
+114,Native grassland,79,SA,Semi-arid,Rhodes intensification,"S4: Rhodes
+intensification"
+34,Maize residue,0,SA,Semi-arid,Rhodes intensification,"S4: Rhodes
+intensification"
+44,Rhodes grass,15,SA,Semi-arid,Rhodes intensification,"S4: Rhodes
+intensification"
+54,Maize concentrate,6,SA,Semi-arid,Rhodes intensification,"S4: Rhodes
+intensification"
+64,Native grassland,43,THSH,Trop. High. Sub-humid,Rhodes intensification,"S4: Rhodes
+intensification"
+84,Maize residue,6,THSH,Trop. High. Sub-humid,Rhodes intensification,"S4: Rhodes
+intensification"
+94,Rhodes grass,50,THSH,Trop. High. Sub-humid,Rhodes intensification,"S4: Rhodes
+intensification"
+104,Maize concentrate,1,THSH,Trop. High. Sub-humid,Rhodes intensification,"S4: Rhodes
+intensification"
+115,Native grassland,41,SH,Sub-humid,Rhodes intensification,"S4: Rhodes
+intensification"
+134,Maize residue,0.666666667,SH,Sub-humid,Rhodes intensification,"S4: Rhodes
+intensification"
+144,Rhodes grass,48.66666667,SH,Sub-humid,Rhodes intensification,"S4: Rhodes
+intensification"
+154,Maize concentrate,9.666666667,SH,Sub-humid,Rhodes intensification,"S4: Rhodes
+intensification"
+164,Native grassland,33,THH,Trop. High. Humid,Rhodes intensification,"S4: Rhodes
+intensification"
+184,Maize residue,24,THH,Trop. High. Humid,Rhodes intensification,"S4: Rhodes
+intensification"
+194,Rhodes grass,42,THH,Trop. High. Humid,Rhodes intensification,"S4: Rhodes
+intensification"
+204,Maize concentrate,1,THH,Trop. High. Humid,Rhodes intensification,"S4: Rhodes
+intensification"
+116,Native grassland,64,SA,Semi-arid,Maize intensification + Rhodes expansion-intensification,"S5: S2 + S3
++ S4"
+35,Maize residue,7.5,SA,Semi-arid,Maize intensification + Rhodes expansion-intensification,"S5: S2 + S3
++ S4"
+45,Rhodes grass,15,SA,Semi-arid,Maize intensification + Rhodes expansion-intensification,"S5: S2 + S3
++ S4"
+55,Maize concentrate,13.5,SA,Semi-arid,Maize intensification + Rhodes expansion-intensification,"S5: S2 + S3
++ S4"
+65,Native grassland,28,THSH,Trop. High. Sub-humid,Maize intensification + Rhodes expansion-intensification,"S5: S2 + S3
++ S4"
+85,Maize residue,13.5,THSH,Trop. High. Sub-humid,Maize intensification + Rhodes expansion-intensification,"S5: S2 + S3
++ S4"
+95,Rhodes grass,50,THSH,Trop. High. Sub-humid,Maize intensification + Rhodes expansion-intensification,"S5: S2 + S3
++ S4"
+105,Maize concentrate,8.5,THSH,Trop. High. Sub-humid,Maize intensification + Rhodes expansion-intensification,"S5: S2 + S3
++ S4"
+117,Native grassland,26,SH,Sub-humid,Maize intensification + Rhodes expansion-intensification,"S5: S2 + S3
++ S4"
+135,Maize residue,8.166666667,SH,Sub-humid,Maize intensification + Rhodes expansion-intensification,"S5: S2 + S3
++ S4"
+145,Rhodes grass,48.66666667,SH,Sub-humid,Maize intensification + Rhodes expansion-intensification,"S5: S2 + S3
++ S4"
+155,Maize concentrate,17.16666667,SH,Sub-humid,Maize intensification + Rhodes expansion-intensification,"S5: S2 + S3
++ S4"
+165,Native grassland,18,THH,Trop. High. Humid,Maize intensification + Rhodes expansion-intensification,"S5: S2 + S3
++ S4"
+185,Maize residue,31.5,THH,Trop. High. Humid,Maize intensification + Rhodes expansion-intensification,"S5: S2 + S3
++ S4"
+195,Rhodes grass,42,THH,Trop. High. Humid,Maize intensification + Rhodes expansion-intensification,"S5: S2 + S3
++ S4"
+205,Maize concentrate,8.5,THH,Trop. High. Humid,Maize intensification + Rhodes expansion-intensification,"S5: S2 + S3
++ S4"
